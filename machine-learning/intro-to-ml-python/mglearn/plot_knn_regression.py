@@ -22,17 +22,26 @@ def plot_knn_regression(n_neighbors=1):
 
     for x, y_, neighbors in zip(X_test, y_pred, closest.T):
         for neighbor in neighbors[:n_neighbors]:
-                plt.arrow(x[0], y_, X[neighbor, 0] - x[0], y[neighbor] - y_,
-                          head_width=0, fc='k', ec='k')
+            plt.arrow(
+                x[0],
+                y_,
+                X[neighbor, 0] - x[0],
+                y[neighbor] - y_,
+                head_width=0,
+                fc="k",
+                ec="k",
+            )
 
-    train, = plt.plot(X, y, 'o', c=cm3(0))
-    test, = plt.plot(X_test, -3 * np.ones(len(X_test)), '*', c=cm3(2),
-                     markersize=20)
-    pred, = plt.plot(X_test, y_pred, '*', c=cm3(0), markersize=20)
+    (train,) = plt.plot(X, y, "o", c=cm3(0))
+    (test,) = plt.plot(X_test, -3 * np.ones(len(X_test)), "*", c=cm3(2), markersize=20)
+    (pred,) = plt.plot(X_test, y_pred, "*", c=cm3(0), markersize=20)
     plt.vlines(X_test, -3.1, 3.1, linestyle="--")
-    plt.legend([train, test, pred],
-               ["training data/target", "test data", "test prediction"],
-               ncol=3, loc=(.1, 1.025))
+    plt.legend(
+        [train, test, pred],
+        ["training data/target", "test data", "test prediction"],
+        ncol=3,
+        loc=(0.1, 1.025),
+    )
     plt.ylim(-3.1, 3.1)
     plt.xlabel("Feature")
     plt.ylabel("Target")

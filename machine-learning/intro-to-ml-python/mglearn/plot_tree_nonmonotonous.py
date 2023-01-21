@@ -7,6 +7,7 @@ from .plot_2d_separator import plot_2d_separator
 
 def plot_tree_not_monotone():
     import graphviz
+
     # make a simple 2d dataset
     X, y = make_blobs(centers=4, random_state=8)
     y = y % 2

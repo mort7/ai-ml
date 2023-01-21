@@ -4,28 +4,36 @@ import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap, colorConverter, LinearSegmentedColormap
 
 
-cm_cycle = ListedColormap(['#0000aa', '#ff5050', '#50ff50', '#9040a0', '#fff000'])
-cm3 = ListedColormap(['#0000aa', '#ff2020', '#50ff50'])
-cm2 = ListedColormap(['#0000aa', '#ff2020'])
+cm_cycle = ListedColormap(["#0000aa", "#ff5050", "#50ff50", "#9040a0", "#fff000"])
+cm3 = ListedColormap(["#0000aa", "#ff2020", "#50ff50"])
+cm2 = ListedColormap(["#0000aa", "#ff2020"])
 
 # create a smooth transition from the first to to the second color of cm3
 # similar to RdBu but with our red and blue, also not going through white,
 # which is really bad for greyscale
 
-cdict = {'red': [(0.0, 0.0, cm2(0)[0]),
-                 (1.0, cm2(1)[0], 1.0)],
-
-         'green': [(0.0, 0.0, cm2(0)[1]),
-                   (1.0, cm2(1)[1], 1.0)],
-
-         'blue': [(0.0, 0.0, cm2(0)[2]),
-                  (1.0, cm2(1)[2], 1.0)]}
+cdict = {
+    "red": [(0.0, 0.0, cm2(0)[0]), (1.0, cm2(1)[0], 1.0)],
+    "green": [(0.0, 0.0, cm2(0)[1]), (1.0, cm2(1)[1], 1.0)],
+    "blue": [(0.0, 0.0, cm2(0)[2]), (1.0, cm2(1)[2], 1.0)],
+}
 
 ReBl = LinearSegmentedColormap("ReBl", cdict)
 
 
-def discrete_scatter(x1, x2, y=None, markers=None, s=10, ax=None,
-                     labels=None, padding=.2, alpha=1, c=None, markeredgewidth=None):
+def discrete_scatter(
+    x1,
+    x2,
+    y=None,
+    markers=None,
+    s=10,
+    ax=None,
+    labels=None,
+    padding=0.2,
+    alpha=1,
+    c=None,
+    markeredgewidth=None,
+):
     """Adaption of matplotlib.pyplot.scatter to plot classes or clusters.
 
     Parameters
@@ -64,7 +72,7 @@ def discrete_scatter(x1, x2, y=None, markers=None, s=10, ax=None,
     unique_y = np.unique(y)
 
     if markers is None:
-        markers = ['o', '^', 'v', 'D', 's', '*', 'p', 'h', 'H', '8', '<', '>'] * 10
+        markers = ["o", "^", "v", "D", "s", "*", "p", "h", "H", "8", "<", ">"] * 10
 
     if len(markers) == 1:
         markers = markers * len(unique_y)
@@ -75,27 +83,36 @@ def discrete_scatter(x1, x2, y=None, markers=None, s=10, ax=None,
     # lines in the matplotlib sense, not actual lines
     lines = []
 
-    current_cycler = mpl.rcParams['axes.prop_cycle']
+    current_cycler = mpl.rcParams["axes.prop_cycle"]
 
     for i, (yy, cycle) in enumerate(zip(unique_y, current_cycler())):
         mask = y == yy
         # if c is none, use color cycle
         if c is None:
-            color = cycle['color']
+            color = cycle["color"]
         elif len(c) > 1:
             color = c[i]
         else:
             color = c
         # use light edge for dark markers
-        if np.mean(colorConverter.to_rgb(color)) < .4:
+        if np.mean(colorConverter.to_rgb(color)) < 0.4:
             markeredgecolor = "grey"
         else:
             markeredgecolor = "black"
 
-        lines.append(ax.plot(x1[mask], x2[mask], markers[i], markersize=s,
-                             label=labels[i], alpha=alpha, c=color,
-                             markeredgewidth=markeredgewidth,
-                             markeredgecolor=markeredgecolor)[0])
+        lines.append(
+            ax.plot(
+                x1[mask],
+                x2[mask],
+                markers[i],
+                markersize=s,
+                label=labels[i],
+                alpha=alpha,
+                c=color,
+                markeredgewidth=markeredgewidth,
+                markeredgecolor=markeredgecolor,
+            )[0]
+        )
 
     if padding != 0:
         pad1 = x1.std() * padding

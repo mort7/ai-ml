@@ -7,8 +7,15 @@ from sklearn.utils.deprecation import deprecated
 
 
 @deprecated("Please import make_blobs directly from scikit-learn")
-def make_blobs(n_samples=100, n_features=2, centers=2, cluster_std=1.0,
-               center_box=(-10.0, 10.0), shuffle=True, random_state=None):
+def make_blobs(
+    n_samples=100,
+    n_features=2,
+    centers=2,
+    cluster_std=1.0,
+    center_box=(-10.0, 10.0),
+    shuffle=True,
+    random_state=None,
+):
     """Generate isotropic Gaussian blobs for clustering.
 
     Read more in the :ref:`User Guide <sample_generators>`.
@@ -66,8 +73,9 @@ def make_blobs(n_samples=100, n_features=2, centers=2, cluster_std=1.0,
     generator = check_random_state(random_state)
 
     if isinstance(centers, numbers.Integral):
-        centers = generator.uniform(center_box[0], center_box[1],
-                                    size=(centers, n_features))
+        centers = generator.uniform(
+            center_box[0], center_box[1], size=(centers, n_features)
+        )
     else:
         centers = check_array(centers)
         n_features = centers.shape[1]
@@ -87,8 +95,7 @@ def make_blobs(n_samples=100, n_features=2, centers=2, cluster_std=1.0,
         n_samples_per_center = n_samples
 
     for i, (n, std) in enumerate(zip(n_samples_per_center, cluster_std)):
-        X.append(centers[i] + generator.normal(scale=std,
-                                               size=(n, n_features)))
+        X.append(centers[i] + generator.normal(scale=std, size=(n, n_features)))
         y += [i] * n
 
     X = np.concatenate(X)

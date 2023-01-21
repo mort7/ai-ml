@@ -4,11 +4,12 @@ import matplotlib.pyplot as plt
 
 def plot_animal_tree(ax=None):
     import graphviz
+
     if ax is None:
         ax = plt.gca()
-    mygraph = graphviz.Digraph(node_attr={'shape': 'box'},
-                               edge_attr={'labeldistance': "10.5"},
-                               format="png")
+    mygraph = graphviz.Digraph(
+        node_attr={"shape": "box"}, edge_attr={"labeldistance": "10.5"}, format="png"
+    )
     mygraph.node("0", "Has feathers?")
     mygraph.node("1", "Can fly?")
     mygraph.node("2", "Has fins?")

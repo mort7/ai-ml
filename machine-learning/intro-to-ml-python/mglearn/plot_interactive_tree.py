@@ -44,12 +44,13 @@ def plot_tree_progressive():
     discrete_scatter(X[:, 0], X[:, 1], y, ax=ax)
     ax.set_xlabel("Feature 0")
     ax.set_ylabel("Feature 1")
-    plt.legend(["Class 0", "Class 1"], loc='best')
+    plt.legend(["Class 0", "Class 1"], loc="best")
 
     axes = []
     for i in range(3):
-        fig, ax = plt.subplots(1, 2, figsize=(12, 4),
-                               subplot_kw={'xticks': (), 'yticks': ()})
+        fig, ax = plt.subplots(
+            1, 2, figsize=(12, 4), subplot_kw={"xticks": (), "yticks": ()}
+        )
         axes.append(ax)
     axes = np.array(axes)
 
@@ -62,7 +63,7 @@ def plot_tree_progressive():
 def plot_tree_partition(X, y, tree, ax=None):
     if ax is None:
         ax = plt.gca()
-    eps = X.std() / 2.
+    eps = X.std() / 2.0
 
     x_min, x_max = X[:, 0].min() - eps, X[:, 0].max() + eps
     y_min, y_max = X[:, 1].min() - eps, X[:, 1].max() + eps
@@ -77,8 +78,8 @@ def plot_tree_partition(X, y, tree, ax=None):
     faces = tree.apply(X_grid)
     faces = faces.reshape(X1.shape)
     border = ndimage.laplace(faces) != 0
-    ax.contourf(X1, X2, Z, alpha=.4, cmap=cm2, levels=[0, .5, 1])
-    ax.scatter(X1[border], X2[border], marker='.', s=1)
+    ax.contourf(X1, X2, Z, alpha=0.4, cmap=cm2, levels=[0, 0.5, 1])
+    ax.scatter(X1[border], X2[border], marker=".", s=1)
 
     discrete_scatter(X[:, 0], X[:, 1], y, ax=ax)
     ax.set_xlim(x_min, x_max)

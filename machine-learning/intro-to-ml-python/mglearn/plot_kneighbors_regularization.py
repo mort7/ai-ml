@@ -19,8 +19,11 @@ def plot_kneighbors_regularization():
         kneighbor_regression.fit(X, y)
         ax.plot(x, y_no_noise, label="true function")
         ax.plot(x, y, "o", label="data")
-        ax.plot(x_test, kneighbor_regression.predict(x_test[:, np.newaxis]),
-                label="prediction")
+        ax.plot(
+            x_test,
+            kneighbor_regression.predict(x_test[:, np.newaxis]),
+            label="prediction",
+        )
         ax.legend()
         ax.set_title("n_neighbors = %d" % n_neighbors)
 

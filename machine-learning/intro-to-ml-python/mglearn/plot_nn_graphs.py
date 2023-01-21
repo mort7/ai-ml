@@ -1,11 +1,12 @@
-
-
 def plot_logistic_regression_graph():
     import graphviz
-    lr_graph = graphviz.Digraph(node_attr={'shape': 'circle', 'fixedsize': 'True'},
-                                graph_attr={'rankdir': 'LR', 'splines': 'line'})
-    inputs = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_0")
-    output = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_2")
+
+    lr_graph = graphviz.Digraph(
+        node_attr={"shape": "circle", "fixedsize": "True"},
+        graph_attr={"rankdir": "LR", "splines": "line"},
+    )
+    inputs = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_0")
+    output = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_2")
 
     for i in range(4):
         inputs.node("x[%d]" % i, labelloc="c")
@@ -27,12 +28,15 @@ def plot_logistic_regression_graph():
 
 def plot_single_hidden_layer_graph():
     import graphviz
-    nn_graph = graphviz.Digraph(node_attr={'shape': 'circle', 'fixedsize': 'True'},
-                                graph_attr={'rankdir': 'LR', 'splines': 'line'})
 
-    inputs = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_0")
-    hidden = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_1")
-    output = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_2")
+    nn_graph = graphviz.Digraph(
+        node_attr={"shape": "circle", "fixedsize": "True"},
+        graph_attr={"rankdir": "LR", "splines": "line"},
+    )
+
+    inputs = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_0")
+    hidden = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_1")
+    output = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_2")
 
     for i in range(4):
         inputs.node("x[%d]" % i)
@@ -65,14 +69,17 @@ def plot_single_hidden_layer_graph():
 
 def plot_two_hidden_layer_graph():
     import graphviz
-    nn_graph = graphviz.Digraph(node_attr={'shape': 'circle', 'fixedsize': 'True'},
-                                graph_attr={'rankdir': 'LR', 'splines': 'line'})
 
-    inputs = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_0")
-    hidden = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_1")
-    hidden2 = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_2")
+    nn_graph = graphviz.Digraph(
+        node_attr={"shape": "circle", "fixedsize": "True"},
+        graph_attr={"rankdir": "LR", "splines": "line"},
+    )
 
-    output = graphviz.Digraph(node_attr={'shape': 'circle'}, name="cluster_3")
+    inputs = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_0")
+    hidden = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_1")
+    hidden2 = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_2")
+
+    output = graphviz.Digraph(node_attr={"shape": "circle"}, name="cluster_3")
 
     for i in range(4):
         inputs.node("x[%d]" % i)

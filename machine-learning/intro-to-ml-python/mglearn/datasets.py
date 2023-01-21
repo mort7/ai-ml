@@ -22,7 +22,7 @@ def make_forge():
 def make_wave(n_samples=100):
     rnd = np.random.RandomState(42)
     x = rnd.uniform(-3, 3, size=n_samples)
-    y_no_noise = (np.sin(4 * x) + x)
+    y_no_noise = np.sin(4 * x) + x
     y = (y_no_noise + rnd.normal(size=len(x))) / 2
     return x.reshape(-1, 1), y
 
@@ -38,8 +38,8 @@ def load_extended_california():
 
 def load_citibike():
     data_mine = pd.read_csv(os.path.join(DATA_PATH, "citibike.csv"))
-    data_mine['one'] = 1
-    data_mine['starttime'] = pd.to_datetime(data_mine.starttime)
+    data_mine["one"] = 1
+    data_mine["starttime"] = pd.to_datetime(data_mine.starttime)
     data_starttime = data_mine.set_index("starttime")
     data_resampled = data_starttime.resample("3h").sum().fillna(0)
     return data_resampled.one
